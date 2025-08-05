@@ -1,4 +1,4 @@
-# Graphics Library
+# YASS (Yet Another SDL3 Sytem)
 
 A Zig graphics library that abstracts SDL3 and OpenGL, providing a simple and customizable interface for creating graphical applications.
 
@@ -16,8 +16,20 @@ This library wraps SDL3 and OpenGL functionality into a single `Graphics` struct
 ## Basic Usage
 Requires Zig 0.14.1 or 0.15.0-dev (master).
 
-`zig fetch --save git+https://github.com/margual56/yass.git`
+```bash
+zig fetch --save git+https://github.com/margual56/yass.git
+```
 
+Add this to your `build.zig` file:
+```zig
+const yass = b.dependency("yass", .{
+    .target = target,
+    .optimize = optimize,
+});
+exe_mod.addImport("yass", yass.module("root"));
+```
+
+And a minimal example:
 ```zig
 const std = @import("std");
 const yass = @import("yass");
@@ -163,17 +175,17 @@ The library exports commonly used OpenGL constants:
 
 ```zig
 // Drawing modes
-graphics.GL_TRIANGLES
-graphics.GL_LINES
-graphics.GL_POINTS
+yass.GL_TRIANGLES
+yass.GL_LINES
+yass.GL_POINTS
 
 // Buffer types
-graphics.GL_ARRAY_BUFFER
-graphics.GL_ELEMENT_ARRAY_BUFFER
+yass.GL_ARRAY_BUFFER
+yass.GL_ELEMENT_ARRAY_BUFFER
 
 // Usage hints
-graphics.GL_STATIC_DRAW
-graphics.GL_DYNAMIC_DRAW
+yass.GL_STATIC_DRAW
+yass.GL_DYNAMIC_DRAW
 
 // And many more...
 ```
@@ -183,10 +195,10 @@ graphics.GL_DYNAMIC_DRAW
 Key scancodes and mouse buttons are also exported:
 
 ```zig
-graphics.SCANCODE_SPACE
-graphics.SCANCODE_ESCAPE
-graphics.BUTTON_LEFT
-graphics.BUTTON_RIGHT
+yass.SCANCODE_SPACE
+yass.SCANCODE_ESCAPE
+yass.BUTTON_LEFT
+yass.BUTTON_RIGHT
 // etc.
 ```
 
